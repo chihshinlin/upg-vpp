@@ -130,7 +130,7 @@ jobs:
         # for git describe
         fetch-depth: 0
     - name: Get dev image info
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: image-dev-${{ matrix.build_type }}
     - name: Run tests
@@ -164,7 +164,7 @@ jobs:
         # for git describe
         fetch-depth: 0
     - name: Get dev image info
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: image-dev-${{ matrix.build_type }}
     - name: Run tests
