@@ -36,7 +36,7 @@ jobs:
     # It may take some time for the workflow to finish and the artifacts to appear
     # FIXME: https://github.com/dawidd6/action-download-artifact/issues/43
     - name: Get debug image name
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       continue-on-error: true
       id: download
       with:
@@ -52,7 +52,7 @@ jobs:
 
     - name: Retry download (1)
       if: steps.download.outcome=='failure'
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       continue-on-error: true
       id: download1
       with:
@@ -67,7 +67,7 @@ jobs:
 
     - name: Retry download (2)
       if: steps.download1.outcome=='failure'
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         workflow: main.yaml
         workflow_conclusion: success
@@ -83,7 +83,7 @@ jobs:
         hack/retag-unexpire.sh $(sed 's@/@ @;s/:/ /' image-debug.txt) "${GITHUB_REF##*/}_debug"
 
     - name: Get release image name
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         workflow: main.yaml
         workflow_conclusion: success
@@ -99,7 +99,7 @@ jobs:
         hack/retag-unexpire.sh $(sed 's@/@ @;s/:/ /' image-release.txt) "${GITHUB_REF##*/}_release"
 
     - name: Get dev release image name
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         workflow: main.yaml
         workflow_conclusion: success
@@ -114,7 +114,7 @@ jobs:
         hack/retag-unexpire.sh $(sed 's@/@ @;s/:/ /' image-dev-release.txt) "${GITHUB_REF##*/}_dev_release"
 
     - name: Get dev debug image name
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         workflow: main.yaml
         workflow_conclusion: success
